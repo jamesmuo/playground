@@ -51,18 +51,30 @@ public class Fibonacci {
   }
 
   public void doIt(String[] args) {
+    IFibonacci fibImpl[] = new IFibonacci[3];
+    fibImpl[0] = new FibonacciRecursion();
+    fibImpl[1] = new FibonacciIteration();
+    fibImpl[2] = new FibonacciRecursion2();
+    StringBuilder sb = new StringBuilder();
     long n = 5;
 
     if (args.length == 1) {
       try {
-        n = Integer.parseInt(args[0]);
+        n = Long.parseLong(args[0]);
       } catch (NumberFormatException nfe) {
         nfe.printStackTrace();
       }
     }
-    System.out.println("Fibonacci (Recursion) of " + n + " = " + new FibonacciRecursion().fibonacci(n));
-    System.out.println("Fibonacci (Iteration) of " + n + " = " + new FibonacciIteration().fibonacci(n));
-    System.out.println("Fibonacci (Recursion2) of " + n + " = " + new FibonacciRecursion2().fibonacci(n));
+
+    for (int i = 0; i < fibImpl.length; ++i) {
+      sb.append("Fibonacci (");
+      sb.append(fibImpl[i].getClass().getName());
+      sb.append(") of ").append(n).append(" = ");
+      sb.append(fibImpl[i].fibonacci(n));
+
+      System.out.println(sb.toString());
+      sb.delete(0, sb.length());
+    }
   }
 
   public static void main(String[] args) {
