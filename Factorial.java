@@ -22,6 +22,10 @@ public class Factorial {
   }
 
   public void doIt(String[] args) {
+    IFactorial factImpl[] = new IFactorial[2];
+    factImpl[0] = new FactorialRecursion();
+    factImpl[1] = new FactorialIteration();
+    StringBuilder sb = new StringBuilder();
     long n = 5;
 
     if (args.length == 1) {
@@ -31,8 +35,15 @@ public class Factorial {
         nfe.printStackTrace();
       }
     }
-    System.out.println("Factorial (Recursion) of " + n + " = " + new FactorialRecursion().factorial(n));
-    System.out.println("Factorial (Iteration) of " + n + " = " + new FactorialIteration().factorial(n));
+    for (int i = 0; i < factImpl.length; ++i) {
+      sb.append("Factorial (");
+      sb.append(factImpl[i].getClass().getName());
+      sb.append(") of ").append(n).append(" = ");
+      sb.append(factImpl[i].factorial(n));
+
+      System.out.println(sb.toString());
+      sb.delete(0, sb.length());
+    }
   }
 
   public static void main(String[] args) {
