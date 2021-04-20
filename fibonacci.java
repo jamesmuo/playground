@@ -56,6 +56,14 @@ public class Fibonacci {
     fi = new FibonacciIteration();
     fr2 = new FibonacciRecursion2();
     
+    if (args.length == 1) {
+      try {
+        n = Integer.parseInt(args[0]);
+      } catch (NumberFormatException nfe) {
+        nfe.printStackTrace();
+      }
+    }
+    
     System.out.println("Fibonacci (Recursion) of " + n + " = " + fr.fibonacci(n));
     System.out.println("Fibonacci (Iteration) of " + n + " = " + fi.fibonacci(n));
     System.out.println("Fibonacci (Recursion2) of " + n + " = " + fr2.fibonacci(n));
