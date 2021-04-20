@@ -28,6 +28,14 @@ public class Factorial {
     fr = new FactorialRecursion();
     fi = new FactorialIteration();
     
+    if (args.length == 1) {
+      try {
+        n = Integer.parseInt(args[0]);
+      } catch (NumberFormatException nfe) {
+        nfe.printStackTrace();
+      }
+    }
+        
     System.out.println("Factorial (Recursion) of " + n + " = " + fr.factorial(n));
     System.out.println("Factorial (Iteration) of " + n + " = " + fi.factorial(n));
   }
